@@ -1,0 +1,43 @@
+application: managethetrain
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /css
+  static_dir: static/css
+
+- url: /js
+  static_dir: static/js
+
+- url: /views
+  static_dir: static/views
+
+- url: /img
+  static_dir: static/img
+
+- url: /googledba5dc75a2897d41.html
+  static_files: templates/googledba5dc75a2897d41.html
+  upload: templates/googledba5dc75a2897d41\.html
+  secure: always
+
+- url: /schedule_json
+  static_files: states.json
+  upload: states\.json
+  secure: always
+
+- url: /
+  static_files: templates/index.html
+  upload: templates/index\.html
+  secure: always
+
+- url: /_ah/spi/.*
+  script: main.api
+  secure: always
+
+libraries:
+- name: endpoints
+  version: latest
+- name: pycrypto
+  version: latest
