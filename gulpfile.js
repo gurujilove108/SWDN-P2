@@ -54,9 +54,9 @@ var cliArgs = process.argv;
 /* One example of copying files. In this case, notice we have a folder test in our root directory */
 gulp.task("copy-files-v1", function(done) {
 
-	/* 1. Add all files recursively in the static folder to the test folder. If test folder does not exist, it will be created */
-	/* 2. Add every python file recursively from the root directory into the test folder */
-	/* 3. Add every txt file to the test folder except in this case we are going to ignore the node_modules folder, if the folder copiedTextFiles does not exist inside of test, it will be created */
+	/* 1. copy all files recursively in the static folder to the test folder using gulp.src, pipe for passing in output as input to another program, and If test folder does not exist, it will be created */
+	/* 2. copy every python file recursively from the root directory into the test folder */
+	/* 3. copy every txt file to the test folder except in this case we are going to ignore the node_modules folder, if the folder copiedTextFiles does not exist inside of test, it will be created */
 	gulp.src('static/**/*').pipe(gulp.dest('test'));
 	gulp.src('./**/*.py').pipe(gulp.dest('test'));
 	gulp.src('./**/*.txt').pipe(gulpIgnore.exclude("node_modules/**")).pipe(gulp.dest('test/copiedTextFiles'));
@@ -102,14 +102,27 @@ gulp.task('remove-folder-contents-v1', function(done) {
 	});
 });
 
-/* Same as above except were going to be tricky about how we pass in a callback */
+/* Same as above except were going to be tricky about how we pass in a callback, we pass in a function that gets called immediately, and then returns the same function used as the function above */
 gulp.task('remove-folder-contents-v2', function(done) {
-	rimraf('test/*', (function() {
-		return function() {
+	rimraf('test/*', (function(anything) {
+		return  function() {
 			done();
-		}
-	})());
+		};
+	})(anything));
 });
+
+/* Truth is we could just call as many function and function calls, this essentially makes layers for gulp stasks*/
+gulp.task('remove-folder-contents-v3', function(done) {
+	rimraf('test/*', (function(anything) {
+		return  function() {
+			return function() {
+				done();
+			}
+		};
+	})()());
+});
+
+
 
 
 

@@ -17,14 +17,27 @@ handlers:
 - url: /img
   static_dir: static/img
 
+- url: /angular
+  static_dir: static/angular-1.5.8
+
+- url: /bootstrap
+  static_dir: static/bootstrap-3.3.7-dist
+
+- url: /font-awesome 
+  static_dir: static/font-awesome-4.6.3
+
+- url: /bootstrap-social
+  static_dir: static/bootstrap-social
+
+- url: /jquery
+  static_dir: static
+
+- url: /img
+  static_dir: static/img
+
 - url: /googledba5dc75a2897d41.html
   static_files: templates/googledba5dc75a2897d41.html
   upload: templates/googledba5dc75a2897d41\.html
-  secure: always
-
-- url: /schedule_json
-  static_files: states.json
-  upload: states\.json
   secure: always
 
 - url: /
