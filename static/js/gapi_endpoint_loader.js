@@ -15,7 +15,7 @@ function GapiController(endpoints) {
 	this.gapiClient 		= gapi.client;
 	this.rootPath 			= '//' + window.location.host + '/_ah/api';
 
-	this.loadEndpointsAsync();
+	//this.loadEndpointsAsync();
 	this.loadEndpointsSync(0);
 }
 
@@ -40,7 +40,8 @@ GapiController.prototype.loadEndpointsAsync = function() {
 	        	log(endpoint + " has been loaded");
 	        	counter++;
 	        	if (counter === self.endpointsLength) {
-	        		log("Done loading endpoints Asynchronously");
+	        		log("Done loading endpoints asynchronously, bootstrapping angular to the document");
+	        		angular.bootstrap(document, ["swdnP2App"]);
 	        	}
 	    	}, self.rootPath);
 		})(endpointKey, currentVersion)
@@ -50,8 +51,10 @@ GapiController.prototype.loadEndpointsAsync = function() {
 
 /* Here we load in the endpoints in order synchronously using a little recursion */
 GapiController.prototype.loadEndpointsSync = function(counter) {
+
 	if (counter === this.endpointsLength) {
-		log("Done loading endpoints synchronously... stopping recursion");
+		log("Done loading endpoints synchronously... stopping recursion, bootstrapping angular to the document");
+	    angular.bootstrap(document, ["swdnP2App"]);
 		return;
 	}
 
@@ -64,8 +67,10 @@ GapiController.prototype.loadEndpointsSync = function(counter) {
 		counter++;
 		return self.loadEndpointsSync(counter);
 	}, this.rootPath);
+
 }
 
+/* Called Once the Google JS Client lib has loaded*/
 function init() {
 	window.gapiController = new GapiController(endpoints);
 }
