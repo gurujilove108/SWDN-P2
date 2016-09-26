@@ -14,12 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from endpoint_apis.user_endpoint import UserEndpoint
-from endpoint_apis.train_manager_endpoint import TrainManager
+from endpoint_apis.login_endpoint 				import LoginEndpoint 
+from endpoint_apis.signup_endpoint 				import SignupEndpoint
+from endpoint_apis.schedule_endpoint 			import ScheduleEndpoint
+from endpoint_apis.connection_endpoint 			import ConnectionEndpoint
+from endpoint_apis.frontend_middleware_endpoint import FrontEndMiddlewareEndpoint
+
 import endpoints
 import logging
 
 api = endpoints.api_server([
-	UserEndpoint,
-	TrainManager
+	LoginEndpoint,
+	SignupEndpoint,
+	ScheduleEndpoint,
+	ConnectionEndpoint,
+	FrontEndMiddlewareEndpoint
 ])

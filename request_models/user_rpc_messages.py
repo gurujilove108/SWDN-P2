@@ -1,21 +1,7 @@
 from protorpc import messages
 
-class TrainLocation(messages.Message):
-    city = messages.StringField(1, required=True)
-    country = messages.StringField(2, required=True)
-
-class LocationRequest(messages.Message):
-    city = messages.StringField(1, required=True)
-    country = messages.StringField(2, required=True)
-
-class Train(messages.Message):
-    train_departure_location = messages.MessageField(TrainLocation, 1, required=True)
-    train_arrival_location = messages.MessageField(TrainLocation, 2, required=True)
-    departure_timestamp = messages.IntegerField(3, required=True)
-    arrival_timestamp = messages.IntegerField(4, required=True)
-
-class TrainList(messages.Message):
-    train_list = messages.MessageField(Train, 1, repeated=True)
+class Text(messages.Message):
+	txt = messages.StringField(1)
 
 # class User(messages.Message):
     

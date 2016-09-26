@@ -27,10 +27,7 @@ handlers:
   static_dir: static/font-awesome-4.6.3
 
 - url: /bootstrap-social
-  static_dir: static/bootstrap-social
-
-- url: /jquery
-  static_dir: static
+  static_dir: static/bootstrap-social-gh-pages
 
 - url: /img
   static_dir: static/img
