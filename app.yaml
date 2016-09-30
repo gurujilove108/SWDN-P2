@@ -37,6 +37,11 @@ handlers:
   upload: templates/googledba5dc75a2897d41\.html
   secure: always
 
+- url: /sw.js
+  static_files: sw.js
+  upload: sw\.js
+  secure: always
+  
 - url: /
   static_files: templates/index.html
   upload: templates/index\.html

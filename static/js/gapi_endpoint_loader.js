@@ -29,7 +29,7 @@ GapiController.prototype.loadEndpointsAsync = function() {
 
 	var currentVersion;
 	var counter = 0;
-	var endpointKey
+	var endpointKey;
 	var self = this;
 
 	for (endpointKey in this.endpoints) {
@@ -67,7 +67,6 @@ GapiController.prototype.loadEndpointsSync = function(counter) {
 		counter++;
 		return self.loadEndpointsSync(counter);
 	}, this.rootPath);
-
 }
 
 /* Called Once the Google JS Client lib has loaded*/

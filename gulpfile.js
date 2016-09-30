@@ -56,7 +56,7 @@ var gulp 		= require('gulp'),
 	/* used for checking conditions when performing gulp tasks, gulp-if just adds the ability to add if statements to our tasks */
 	gulpIf 		= require('gulp-if'),
 
-	/* same thing as gulp-if except we add the else part */
+	/* same thing as gulp-if except we add the else part. We could just use gulpIfElse, and remove gulpIf, and if we just wanted to use just the gulpIf part, we would provide null or an empty function for the else part */
 	gulpIfElse 	= require('gulp-if-else'),
 
 	/* You can log output to the terminal by using console.log, or you can be more sophisticated and use gulp-util which has several advantages */
@@ -65,6 +65,11 @@ var gulp 		= require('gulp'),
 
 /* process is a global node object and we can access any command line arguments by process.argv, no plugins are required for this */
 var cliArgs = process.argv;
+
+/* Store filepaths for easy access */
+var paths = {
+	allFiles : "./**/*"
+};
 
 /* One example of copying files. In this case, notice we have a folder test in our root directory, also when running this task from the terminal, it will only say starting task in the logs, but no finished log, lets add another version of this task except we call done() at the end to ensure the finished task part shows up in the logs */
 gulp.task("copy-files-v1", function(done) {
@@ -182,6 +187,15 @@ gulp.task('show-node-info', function(done) {
 	console.log(process);
 	console.log(process.env);
 	console.log(process.env.NODE_ENV);
+});
+
+gulp.task('reload:onchange', function(done) {
+	
+	browserSync.init({
+    	proxy: "localhost:8080"
+    });
+
+	gulp.watch(paths.allFiles).on('change', reload);
 });
 
 

@@ -7,4 +7,8 @@ controllers.controller('FrontEndMiddlewareCtrl', ['$scope', function ($scope) {
 		});
 	};
 
+	$scope.registerServiceWorker = function() {
+		log(navigator.serviceWorker);
+	};
+
 }])
